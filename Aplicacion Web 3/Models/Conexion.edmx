@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ActividadesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblActividades">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionActividad" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="ActIdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHorasActividades">
+          <Key>
+            <PropertyRef Name="HorAct_IdHoras" />
+          </Key>
+          <Property Name="HorAct_IdHoras" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HorAct_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="HorAct_CantidadHoras" Type="int" Nullable="false" />
+          <Property Name="HorAct_IdActividad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUsuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contrasenia" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_HorasActividad_Actividades">
+          <End Role="tblActividades" Type="Self.tblActividades" Multiplicity="1" />
+          <End Role="tblHorasActividades" Type="Self.tblHorasActividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblActividades">
+              <PropertyRef Name="idActividad" />
+            </Principal>
+            <Dependent Role="tblHorasActividades">
+              <PropertyRef Name="HorAct_IdActividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioActividad">
+          <End Role="TblUsuarios" Type="Self.TblUsuarios" Multiplicity="1" />
+          <End Role="tblActividades" Type="Self.tblActividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUsuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="tblActividades">
+              <PropertyRef Name="ActIdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ActividadesModelStoreContainer">
+          <EntitySet Name="tblActividades" EntityType="Self.tblActividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHorasActividades" EntityType="Self.tblHorasActividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUsuarios" EntityType="Self.TblUsuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_HorasActividad_Actividades" Association="Self.fk_HorasActividad_Actividades">
+            <End Role="tblActividades" EntitySet="tblActividades" />
+            <End Role="tblHorasActividades" EntitySet="tblHorasActividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioActividad" Association="Self.FK_UsuarioActividad">
+            <End Role="TblUsuarios" EntitySet="TblUsuarios" />
+            <End Role="tblActividades" EntitySet="tblActividades" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ActividadesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblActividades">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionActividad" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActIdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblHorasActividades" Relationship="Self.fk_HorasActividad_Actividades" FromRole="tblActividades" ToRole="tblHorasActividades" />
+          <NavigationProperty Name="TblUsuarios" Relationship="Self.FK_UsuarioActividad" FromRole="tblActividades" ToRole="TblUsuarios" />
+        </EntityType>
+        <EntityType Name="tblHorasActividades">
+          <Key>
+            <PropertyRef Name="HorAct_IdHoras" />
+          </Key>
+          <Property Name="HorAct_IdHoras" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HorAct_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HorAct_CantidadHoras" Type="Int32" Nullable="false" />
+          <Property Name="HorAct_IdActividad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblActividades" Relationship="Self.fk_HorasActividad_Actividades" FromRole="tblHorasActividades" ToRole="tblActividades" />
+        </EntityType>
+        <EntityType Name="TblUsuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblActividades" Relationship="Self.FK_UsuarioActividad" FromRole="TblUsuarios" ToRole="tblActividades" />
+        </EntityType>
+        <Association Name="fk_HorasActividad_Actividades">
+          <End Role="tblActividades" Type="Self.tblActividades" Multiplicity="1" />
+          <End Role="tblHorasActividades" Type="Self.tblHorasActividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblActividades">
+              <PropertyRef Name="idActividad" />
+            </Principal>
+            <Dependent Role="tblHorasActividades">
+              <PropertyRef Name="HorAct_IdActividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioActividad">
+          <End Role="TblUsuarios" Type="Self.TblUsuarios" Multiplicity="1" />
+          <End Role="tblActividades" Type="Self.tblActividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUsuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="tblActividades">
+              <PropertyRef Name="ActIdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ActividadesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblActividades" EntityType="Self.tblActividades" />
+          <EntitySet Name="tblHorasActividades" EntityType="Self.tblHorasActividades" />
+          <EntitySet Name="TblUsuarios" EntityType="Self.TblUsuarios" />
+          <AssociationSet Name="fk_HorasActividad_Actividades" Association="Self.fk_HorasActividad_Actividades">
+            <End Role="tblActividades" EntitySet="tblActividades" />
+            <End Role="tblHorasActividades" EntitySet="tblHorasActividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioActividad" Association="Self.FK_UsuarioActividad">
+            <End Role="TblUsuarios" EntitySet="TblUsuarios" />
+            <End Role="tblActividades" EntitySet="tblActividades" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ActividadesModelStoreContainer" CdmEntityContainer="ActividadesEntities">
+          <EntitySetMapping Name="tblActividades">
+            <EntityTypeMapping TypeName="ActividadesModel.tblActividades">
+              <MappingFragment StoreEntitySet="tblActividades">
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="DescripcionActividad" ColumnName="DescripcionActividad" />
+                <ScalarProperty Name="ActIdUsuario" ColumnName="ActIdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHorasActividades">
+            <EntityTypeMapping TypeName="ActividadesModel.tblHorasActividades">
+              <MappingFragment StoreEntitySet="tblHorasActividades">
+                <ScalarProperty Name="HorAct_IdHoras" ColumnName="HorAct_IdHoras" />
+                <ScalarProperty Name="HorAct_Fecha" ColumnName="HorAct_Fecha" />
+                <ScalarProperty Name="HorAct_CantidadHoras" ColumnName="HorAct_CantidadHoras" />
+                <ScalarProperty Name="HorAct_IdActividad" ColumnName="HorAct_IdActividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUsuarios">
+            <EntityTypeMapping TypeName="ActividadesModel.TblUsuarios">
+              <MappingFragment StoreEntitySet="TblUsuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

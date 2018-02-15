@@ -16,7 +16,7 @@ namespace Aplicacion_Web_3
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Ingresar", action = "Inicio", id = UrlParameter.Optional }
             );
         }
     }

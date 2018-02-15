@@ -1,0 +1,69 @@
+﻿@model Aplicacion_Web_3.Models.tblHorasActividades
+
+@{
+    ViewBag.Title = "InicioHoras";
+}
+
+<h2>InicioHoras</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>tblHorasActividades</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.HorAct_Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HorAct_Fecha, new { htmlAttributes = new { @class = "form-control", @id = "HorAct_Fecha" } })
+            @Html.ValidationMessageFor(model => model.HorAct_Fecha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HorAct_CantidadHoras, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HorAct_CantidadHoras, new { htmlAttributes = new { @class = "form-control", @id = "HorAct_CantidadHoras" } })
+            @Html.ValidationMessageFor(model => model.HorAct_CantidadHoras, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.HorAct_IdActividad, new { @Value = ViewBag.idHorActividad, id = "idHorActividad" })
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Create" class="btn btn-success" id="btnCrearHoras" />
+        </div>
+    </div>
+</div>
+}
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Fecha</td>
+                <td>Horas</td>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+            @foreach(var item in ViewBag.listaHoras)
+            {
+            <tr>
+                <td>@item.HorAct_Fecha</td>
+                <td>@item.HorAct_CantidadHoras</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
