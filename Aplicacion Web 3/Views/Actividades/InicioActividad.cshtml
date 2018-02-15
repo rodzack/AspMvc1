@@ -38,6 +38,7 @@
             <tr>
                 <td>Descripcion Actividad</td>
                 <td>Acciones</td>
+                <td>Editar</td>
             </tr>
         </thead>
         <tbody id="cuerpoTabla">
@@ -45,7 +46,8 @@
             {
             <tr>
                 <td>@item.DescripcionActividad</td>
-                <td>@Html.ActionLink("Agregar Horas", "InicioHoras", "Horas",new { HorAct_IdActividad = item.idActividad}, null)</td>
+                <td>@Html.ActionLink("Agregar Horas", "InicioHoras", "Horas", new { HorAct_IdActividad = item.idActividad }, null)</td>
+                <td>@Html.ActionLink("Editar descripción", "EditarActividad", "Actividades", new { idActividad = item.idActividad }, null)</td>
             </tr>
             }
         </tbody>

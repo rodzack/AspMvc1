@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,7 +17,7 @@ namespace Aplicacion_Web_3.Controllers
         {
             if (Session["IdUsuario"] == null)
             {
-                ViewData["alertLogeo"] = "<script>alert('Debe estar logeado')</script>";
+                TempData["mensajeAlerta"] = "<script>alert('Debes estar logeado primero');</script>";
                 return RedirectToAction("Inicio", "Ingresar");
             }
             else
@@ -25,6 +26,30 @@ namespace Aplicacion_Web_3.Controllers
                                             select a).ToList();
                 return View();
             }           
+        }
+
+        public ActionResult EditarActividad(int idActividad)
+        {
+               var actividad = db.tblActividades.Find(idActividad);
+                if (actividad == null)
+                {
+                    return HttpNotFound();
+                }
+
+            return View(actividad);
+        }
+
+        [HttpPost]
+        public ActionResult EditarActividad(tblActividades actividades)
+        {
+            if (ModelState.IsValid)
+            {
+                //actividades.ActIdUsuario = Convert.ToInt32(Session["IdUsuario"]);
+                db.Entry(actividades).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return View(actividades);
         }
 
     }

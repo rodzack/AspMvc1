@@ -255,6 +255,8 @@
     <Content Include="Views\Ingresar\Inicio.cshtml" />
     <Content Include="Views\Actividades\InicioActividad.cshtml" />
     <Content Include="Views\Horas\InicioHoras.cshtml" />
+    <Content Include="Views\Actividades\EditarActividad.cshtml" />
+    <Content Include="Views\Horas\EditarHoras.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

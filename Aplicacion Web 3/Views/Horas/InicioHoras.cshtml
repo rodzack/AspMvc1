@@ -47,6 +47,7 @@
             <tr>
                 <td>Fecha</td>
                 <td>Horas</td>
+                <td>Editar</td>
             </tr>
         </thead>
         <tbody id="cuerpoTabla">
@@ -55,6 +56,7 @@
             <tr>
                 <td>@item.HorAct_Fecha</td>
                 <td>@item.HorAct_CantidadHoras</td>
+                <td>@Html.ActionLink("Editar hora y fecha","EditarHoras",new { HorAct_IdHoras= item.HorAct_IdHoras })</td>
             </tr>
             }
         </tbody>
