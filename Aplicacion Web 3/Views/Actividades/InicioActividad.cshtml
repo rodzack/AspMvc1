@@ -4,55 +4,56 @@
     ViewBag.Title = "Inicio";
 }
 
-<h2>Inicio</h2>
+<div class="Row">
+    <div class="col-lg-1 aaa">
+        <input type="button" value="Actividades" class="btn btn-primary elboton">
+    </div>
 
+    <div class="col-lg-11 formularioo">
+        @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>tblActividades</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.DescripcionActividad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DescripcionActividad, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.DescripcionActividad, new { htmlAttributes = new { @class = "form-control", @id = "DescripcionActividad" } })
                 @Html.ValidationMessageFor(model => model.DescripcionActividad, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <input type="hidden" value=@Session["IdUsuario"] id="ActIdUsuario"/>
+            <input type="hidden" value=@Session["IdUsuario"] id="ActIdUsuario" />
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Crear actividad" class="btn btn-default" id="btnCrearActividad" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Crear actividad" class="btn btn-default" id="btnCrearActividad" />
+                </div>
             </div>
         </div>
-    </div>
 }
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td>Descripcion Actividad</td>
-                <td>Acciones</td>
-                <td>Editar</td>
-            </tr>
-        </thead>
-        <tbody id="cuerpoTabla">
-            @foreach (var item in ViewBag.listaActividades)
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Descripcion Actividad</td>
+                    <td>Acciones</td>
+                    <td>Editar</td>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTabla">
+                @foreach (var item in ViewBag.listaActividades)
             {
-            <tr>
-                <td>@item.DescripcionActividad</td>
-                <td>@Html.ActionLink("Agregar Horas", "InicioHoras", "Horas", new { HorAct_IdActividad = item.idActividad }, null)</td>
-                <td>@Html.ActionLink("Editar descripción", "EditarActividad", "Actividades", new { idActividad = item.idActividad }, null)</td>
-            </tr>
-            }
-        </tbody>
-    </table>
-
+                <tr>
+                    <td>@item.DescripcionActividad</td>
+                    <td>@Html.ActionLink("Agregar Horas", "InicioHoras", "Horas", new { HorAct_IdActividad = item.idActividad }, null)</td>
+                    <td>@Html.ActionLink("Editar descripción", "EditarActividad", "Actividades", new { idActividad = item.idActividad }, null)</td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 @section Scripts {

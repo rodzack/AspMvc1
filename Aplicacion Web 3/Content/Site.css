@@ -1,12 +1,22 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #e9e9e9;
+    color: #666666;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
+.formularioo {
     padding-left: 15px;
     padding-right: 15px;
+    background: white;
+    max-width: 1000px;
+    max-height: 2000px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background-color:white;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -22,3 +32,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.elboton{
+    margin-left:-19px;
+}
+
