@@ -58,6 +58,24 @@ namespace Aplicacion_Web_3.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/CrearUsuario")]
+        public List<TblUsuarios> CrearUsuario(TblUsuarios usuarios)
+        {
+            //db.TblUsuarios.Add(usuarios);
+            //db.SaveChanges();
+
+            var listaUsuarios = (from A in db.TblUsuarios.AsEnumerable()
+                                 select new TblUsuarios
+                                 {
+                                     IdUsuario = A.IdUsuario,
+                                     NombreUsuario = A.NombreUsuario,
+                                     Contrasenia = A.Contrasenia
+                                 }).ToList();
+
+            return listaUsuarios;
+        }
+
 
     }
 }

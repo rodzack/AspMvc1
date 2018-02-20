@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Aplicacion_Web_3.Models.TblUsuarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<form action="/api/CrearUsuario" method="post">
+    <label>Usuario</label>
+    <input type="text" name="NombreUsuario" id="NombreUsuario" class="form-control" />
+    <br />
+    <label>Contraseña</label>
+    <input type="password" name="Contrasenia" id="Contrasenia" />
+    <br />
+    <label>Repetir contraseña</label>
+    <input type="password" id="ContraseniaConfirmar" />
+    <input type="submit" class="btn btn-success" id="btnCrearUsuario" />
+</form>
+
+
+@*<p>
+    @Html.ActionLink("Crear nuevo usuario", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contrasenia)
+        </th>
+    </tr>
+    <tbody id="cuerpoTabla">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contrasenia)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdUsuario }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

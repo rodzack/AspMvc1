@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HorasController.cs" />
     <Compile Include="Controllers\IngresarController.cs" />
     <Compile Include="Controllers\IngresoController.cs" />
+    <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\WebApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +196,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\alertify.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site1.css" />
@@ -212,6 +214,7 @@
       <DependentUpon>Conexion.edmx</DependentUpon>
       <LastGenOutput>Conexion.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\ArchivoJS.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -257,6 +260,7 @@
     <Content Include="Views\Horas\InicioHoras.cshtml" />
     <Content Include="Views\Actividades\EditarActividad.cshtml" />
     <Content Include="Views\Horas\EditarHoras.cshtml" />
+    <Content Include="Views\Registro\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

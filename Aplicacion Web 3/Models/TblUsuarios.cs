@@ -12,6 +12,7 @@ namespace Aplicacion_Web_3.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class TblUsuarios
     {
@@ -27,7 +28,10 @@ namespace Aplicacion_Web_3.Models
         [Display(Name ="Contraseña")]
         [DataType(DataType.Password)]
         public string Contrasenia { get; set; }
-    
+
+        //[NotMapped]
+        //public int MyProperty { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblActividades> tblActividades { get; set; }
     }

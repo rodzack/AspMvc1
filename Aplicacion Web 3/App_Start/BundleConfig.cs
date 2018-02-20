@@ -10,7 +10,8 @@ namespace Aplicacion_Web_3
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-1.10.2.js",
-                        "~/Scripts/ArchivoJS.js"));
+                        "~/Scripts/ArchivoJS.js",
+                        "~/Scripts/alertify.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -30,7 +31,8 @@ namespace Aplicacion_Web_3
 
             bundles.Add(new StyleBundle("~/Content/css1").Include(
           "~/Content/bootstrap.css",
-          "~/Content/site1.css"));
+          "~/Content/site1.css",
+         "~/Content/alertify.css"));
         }
     }
 }

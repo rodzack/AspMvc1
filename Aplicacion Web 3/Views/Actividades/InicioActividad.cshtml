@@ -6,7 +6,9 @@
 
 <div class="Row">
     <div class="col-lg-1 aaa">
-        <input type="button" value="Actividades" class="btn btn-primary elboton">
+        @*<input type="button" value="Actividades" class="btn btn-primary elboton">*@
+        @Html.ActionLink("Actividades", "InicioActividad", "Actividades", null, new { @class = "btn btn-primary elboton" })
+        @Html.ActionLink("Usuarios", "Index", "Registro", null, new { @class = "btn btn-primary elboton" })
     </div>
 
     <div class="col-lg-11 formularioo">
